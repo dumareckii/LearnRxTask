@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kk1-fd-TGv">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,6 +10,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="beP-UY-UUC">
+            <objects>
+                <viewController id="A7f-Hl-jeb" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="kjj-0Z-Czy">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MK3-A8-8N5">
+                                <rect key="frame" x="172" y="350.5" width="30" height="30"/>
+                                <state key="normal" title="Test"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" id="gf3-gT-b1y"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="MK3-A8-8N5" firstAttribute="centerY" secondItem="4se-hY-tCI" secondAttribute="centerY" id="9A7-fe-9HE"/>
+                            <constraint firstItem="MK3-A8-8N5" firstAttribute="centerX" secondItem="4se-hY-tCI" secondAttribute="centerX" id="p6M-k4-oZq"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4se-hY-tCI"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Asc-ce-bxp"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6rn-vO-YMV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-193" y="105"/>
+        </scene>
         <!--Sign In View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -19,7 +48,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1we-jS-84S">
-                                <rect key="frame" x="46" y="217" width="282" height="30"/>
+                                <rect key="frame" x="46" y="239" width="282" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="boE-kl-dBZ"/>
                                     <constraint firstAttribute="width" constant="282" id="kG4-Fv-XDX"/>
@@ -29,7 +58,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lJi-Pb-ijY">
-                                <rect key="frame" x="46" y="265" width="282" height="30"/>
+                                <rect key="frame" x="46" y="287" width="282" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="GAt-IS-5HL"/>
                                     <constraint firstAttribute="width" constant="282" id="GHf-Oh-gzx"/>
@@ -39,7 +68,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trh-sp-PW6">
-                                <rect key="frame" x="155" y="328.5" width="64" height="30"/>
+                                <rect key="frame" x="155" y="350.5" width="64" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="RIi-Ct-7Pg"/>
                                     <constraint firstAttribute="height" constant="30" id="iZY-fa-agJ"/>
@@ -58,6 +87,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="1q6-dF-HbM"/>
                     <connections>
                         <outlet property="emailTextField" destination="1we-jS-84S" id="ahH-A2-JWo"/>
                         <outlet property="passwordTextField" destination="lJi-Pb-ijY" id="I8u-Tt-vbM"/>
@@ -66,7 +96,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-98.400000000000006" y="117.39130434782609"/>
+            <point key="canvasLocation" x="511" y="117"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="F09-nn-mli">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kk1-fd-TGv" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nGe-jb-tJk">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="A7f-Hl-jeb" kind="relationship" relationship="rootViewController" id="LLU-P2-VdX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="V5B-j3-UfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-849" y="105"/>
         </scene>
     </scenes>
 </document>
