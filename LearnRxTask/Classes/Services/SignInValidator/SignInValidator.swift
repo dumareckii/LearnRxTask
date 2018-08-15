@@ -6,7 +6,7 @@
 //  Copyright © 2018 IDAP. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 enum ValidationResult {
     case ok
@@ -25,7 +25,7 @@ extension ValidationResult {
     }
 }
 
-class SignInValidator {
+struct SignInValidator {
 
     static func validateEmail(email: String) -> ValidationResult {
         if email.count == 0 {

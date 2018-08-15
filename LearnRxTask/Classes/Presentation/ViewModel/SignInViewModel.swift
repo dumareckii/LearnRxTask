@@ -39,18 +39,18 @@ class SignInViewModel {
 
           signInEnabled = Driver.combineLatest(validatedEmail, validatedPassword) { email, password in
                return email.isValid && password.isValid
-          }.distinctUntilChanged().debug()
+          }.distinctUntilChanged()
 
           let emailAndPassword = Driver
                .combineLatest(input.email!, input.password!) { ($0, $1) } //TODO: unwrap
-               .debug()
+          
 
           signedIn = input.signInTaps!
                .withLatestFrom(emailAndPassword)
                .flatMapLatest { email, password in
                     return  Driver.of(API.signIn(with: email, password: password)).asDriver(onErrorJustReturn: false)
                }
-               .debug()
+          
      }
 }
 

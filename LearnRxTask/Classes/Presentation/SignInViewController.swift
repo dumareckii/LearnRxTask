@@ -44,23 +44,27 @@ class SignInViewController: UIViewController, LifeTimeDisposeCompatible {
     private func configure() {
         let viewModel = SignInViewModel(
             input: (
-                email: rootView?.emailTextField?.rx.text.orEmpty.asDriver().debug(),
-                password: rootView?.passwordTextField?.rx.text.orEmpty.asDriver().debug(),
-                signInTaps: rootView?.signInButton?.rx.tap.asDriver().debug()
+                email: rootView?.emailTextField?.rx.text.orEmpty.asDriver(),
+                password: rootView?.passwordTextField?.rx.text.orEmpty.asDriver(),
+                signInTaps: rootView?.signInButton?.rx.tap.asDriver()
             ),
             API: ApiServiceFactory.default()
         )
         
-        viewModel.signInEnabled.debug().drive(onNext: { [weak self] enabled in
+//        rootView?.emailTextField?.rx
+//            .text.orEmpty.asDriver()
+//            .drive(rootView?.signInButton?.rx.isEnabled)
+        
+        viewModel.signInEnabled.drive(onNext: { [weak self] enabled in
             self?.rootView?.signInButton?.isEnabled = enabled
             self?.rootView?.signInButton?.alpha = enabled ? 1 : 0.5
         }).lifeTime(self)
         
-        viewModel.validatedEmail.skip(1).debug().drive(onNext: { [weak self] result in
+        viewModel.validatedEmail.skip(1).drive(onNext: { [weak self] result in
             self?.rootView?.emailTextField?.backgroundColor = result.isValid ? UIColor.clear : UIColor.red
         }).lifeTime(self)
         
-        viewModel.validatedPassword.skip(1).debug().drive(onNext: { [weak self] result in
+        viewModel.validatedPassword.skip(1).drive(onNext: { [weak self] result in
             self?.rootView?.passwordTextField?.backgroundColor = result.isValid ? UIColor.clear : UIColor.red
         }).lifeTime(self)
         
@@ -73,7 +77,7 @@ class SignInViewController: UIViewController, LifeTimeDisposeCompatible {
                 actionConfig: (
                     title: TextConstants.PopupConstants.actionOk,
                     style: .cancel))
-        }).lifeTime( self)
+        }).lifeTime(self)
     }
 }
 

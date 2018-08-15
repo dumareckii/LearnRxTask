@@ -7,7 +7,6 @@
 //
 
 import RxSwift
-import RxCocoa
 
 protocol LifeTimeDisposeCompatible {
     var disposeBag: DisposeBag { get }

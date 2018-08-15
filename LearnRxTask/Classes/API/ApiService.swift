@@ -6,10 +6,7 @@
 //  Copyright © 2018 IDAP. All rights reserved.
 //
 
-import UIKit
-import RxSwift
-import RxCocoa
-
+import Foundation
 
 // MARK: Protocol
 
