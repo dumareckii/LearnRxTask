@@ -1,21 +1,25 @@
 PODS:
+  - IDPCastable (0.1.3)
   - RxCocoa (4.2.0):
     - RxSwift (~> 4.0)
   - RxSwift (4.2.0)
 
 DEPENDENCIES:
+  - IDPCastable
   - RxCocoa (~> 4.0)
   - RxSwift (~> 4.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - IDPCastable
     - RxCocoa
     - RxSwift
 
 SPEC CHECKSUMS:
+  IDPCastable: 15051ffccffca8408dd633fbc2a19584e2e11e9c
   RxCocoa: 0b54909c902e1e581212a03e690bbd94032d8baa
   RxSwift: 99e10317ddfcc7fbe01356aafd118fde4a0be104
 
-PODFILE CHECKSUM: 8b3275a00def2fea12dbd615bef3926bcf0fce82
+PODFILE CHECKSUM: 5d943486050d4d2c54eab67d993d509ad63dbda1
 
 COCOAPODS: 1.5.3

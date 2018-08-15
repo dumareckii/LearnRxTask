@@ -13,5 +13,4 @@ class SignInView: UIView {
     @IBOutlet weak var emailTextField: UITextField?
     @IBOutlet weak var passwordTextField: UITextField?
     @IBOutlet weak var signInButton: UIButton?
-
 }

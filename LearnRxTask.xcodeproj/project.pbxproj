@@ -7,14 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		13B7AEBA0B555B60A1D7540F /* Pods_LearnRxTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B95250154435092C243E11C /* Pods_LearnRxTask.framework */; };
 		38F9A13DA13501D74118061F /* Pods_LearnRxTaskTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13047CC5C3288565CE4E9484 /* Pods_LearnRxTaskTests.framework */; };
+		861B84CBD1D18623DF3BCA54 /* Pods_LearnRxTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B95250154435092C243E11C /* Pods_LearnRxTask.framework */; };
 		D90C46A6E52F94FCFF8839FB /* Pods_LearnRxTaskUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26AD8A9C5BB4F6B5F17E38FB /* Pods_LearnRxTaskUITests.framework */; };
 		DC34ACA0212311290080D433 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34AC9F212311290080D433 /* SignInView.swift */; };
 		DC34ACA2212311360080D433 /* SignInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC34ACA1212311360080D433 /* SignInView.xib */; };
 		DC34ACA82123387A0080D433 /* RxExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34ACA72123387A0080D433 /* RxExtensions.swift */; };
-		DC34ACAB21233A2B0080D433 /* AutomaticDisposeCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34ACAA21233A2B0080D433 /* AutomaticDisposeCompatible.swift */; };
-		DC34ACAD21233AA50080D433 /* AutomaticDisposeCompatibleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34ACAC21233AA50080D433 /* AutomaticDisposeCompatibleExtensions.swift */; };
+		DC34ACAB21233A2B0080D433 /* LifeTimeDisposeCompatible.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34ACAA21233A2B0080D433 /* LifeTimeDisposeCompatible.swift */; };
 		DC34ACAF21233AF00080D433 /* AssociatedObjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34ACAE21233AF00080D433 /* AssociatedObjectHelper.swift */; };
 		DCA83A272122BF350078DD8F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA83A262122BF350078DD8F /* SignInViewController.swift */; };
 		DCA83A292122BF510078DD8F /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA83A282122BF510078DD8F /* SignInViewModel.swift */; };
@@ -26,6 +25,9 @@
 		DCE03AA42121A4C20044D442 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE03AA22121A4C20044D442 /* LaunchScreen.storyboard */; };
 		DCE03AAF2121A4C20044D442 /* LearnRxTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE03AAE2121A4C20044D442 /* LearnRxTaskTests.swift */; };
 		DCE03ABA2121A4C20044D442 /* LearnRxTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE03AB92121A4C20044D442 /* LearnRxTaskUITests.swift */; };
+		DCFC19C02124399900100CE3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC19BF2124399900100CE3 /* ViewController.swift */; };
+		DCFC19C621244AFE00100CE3 /* UIViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC19C521244AFE00100CE3 /* UIViewControllerExtensions.swift */; };
+		DCFC19C92124514200100CE3 /* TextConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC19C82124514200100CE3 /* TextConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +60,7 @@
 		DC34AC9F212311290080D433 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		DC34ACA1212311360080D433 /* SignInView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInView.xib; sourceTree = "<group>"; };
 		DC34ACA72123387A0080D433 /* RxExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxExtensions.swift; sourceTree = "<group>"; };
-		DC34ACAA21233A2B0080D433 /* AutomaticDisposeCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticDisposeCompatible.swift; sourceTree = "<group>"; };
-		DC34ACAC21233AA50080D433 /* AutomaticDisposeCompatibleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomaticDisposeCompatibleExtensions.swift; sourceTree = "<group>"; };
+		DC34ACAA21233A2B0080D433 /* LifeTimeDisposeCompatible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeTimeDisposeCompatible.swift; sourceTree = "<group>"; };
 		DC34ACAE21233AF00080D433 /* AssociatedObjectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociatedObjectHelper.swift; sourceTree = "<group>"; };
 		DCA83A262122BF350078DD8F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DCA83A282122BF510078DD8F /* SignInViewModel.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -77,6 +78,9 @@
 		DCE03AB52121A4C20044D442 /* LearnRxTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LearnRxTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE03AB92121A4C20044D442 /* LearnRxTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearnRxTaskUITests.swift; sourceTree = "<group>"; };
 		DCE03ABB2121A4C20044D442 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DCFC19BF2124399900100CE3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DCFC19C521244AFE00100CE3 /* UIViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensions.swift; sourceTree = "<group>"; };
+		DCFC19C82124514200100CE3 /* TextConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13B7AEBA0B555B60A1D7540F /* Pods_LearnRxTask.framework in Frameworks */,
+				861B84CBD1D18623DF3BCA54 /* Pods_LearnRxTask.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,13 +134,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DC34ACA32123113B0080D433 /* SignInView */ = {
+		DC34ACA32123113B0080D433 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				DC34AC9F212311290080D433 /* SignInView.swift */,
 				DC34ACA1212311360080D433 /* SignInView.xib */,
 			);
-			path = SignInView;
+			path = View;
 			sourceTree = "<group>";
 		};
 		DC34ACA4212311510080D433 /* ViewModel */ = {
@@ -161,7 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				DC34ACA72123387A0080D433 /* RxExtensions.swift */,
-				DC34ACAC21233AA50080D433 /* AutomaticDisposeCompatibleExtensions.swift */,
+				DCFC19C521244AFE00100CE3 /* UIViewControllerExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -169,7 +173,7 @@
 		DC34ACA9212339970080D433 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				DC34ACAA21233A2B0080D433 /* AutomaticDisposeCompatible.swift */,
+				DC34ACAA21233A2B0080D433 /* LifeTimeDisposeCompatible.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -177,6 +181,7 @@
 		DCA83A232122BECB0078DD8F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				DCFC19C72124512200100CE3 /* Constants */,
 				DC34ACA5212336DD0080D433 /* Helpers */,
 				DCA83A2D2122C1080078DD8F /* Services */,
 				DCA83A2A2122BF580078DD8F /* Application */,
@@ -197,9 +202,9 @@
 		DCA83A252122BEF40078DD8F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				DC34ACA32123113B0080D433 /* View */,
 				DC34ACA4212311510080D433 /* ViewModel */,
 				DCA83A262122BF350078DD8F /* SignInViewController.swift */,
-				DC34ACA32123113B0080D433 /* SignInView */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -263,6 +268,7 @@
 		DCE03A982121A4C10044D442 /* LearnRxTask */ = {
 			isa = PBXGroup;
 			children = (
+				DCFC19BE2124397C00100CE3 /* Temp */,
 				DCA83A2B2122BF6D0078DD8F /* SupportingFiles */,
 				DCA83A232122BECB0078DD8F /* Classes */,
 				DCE03AA02121A4C20044D442 /* Assets.xcassets */,
@@ -288,6 +294,22 @@
 			path = LearnRxTaskUITests;
 			sourceTree = "<group>";
 		};
+		DCFC19BE2124397C00100CE3 /* Temp */ = {
+			isa = PBXGroup;
+			children = (
+				DCFC19BF2124399900100CE3 /* ViewController.swift */,
+			);
+			path = Temp;
+			sourceTree = "<group>";
+		};
+		DCFC19C72124512200100CE3 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				DCFC19C82124514200100CE3 /* TextConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,7 +321,7 @@
 				DCE03A922121A4C10044D442 /* Sources */,
 				DCE03A932121A4C10044D442 /* Frameworks */,
 				DCE03A942121A4C10044D442 /* Resources */,
-				4CB0EADB225E72FE983C177E /* [CP] Embed Pods Frameworks */,
+				49ABA09B26D09466BA5DC7A0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -423,18 +445,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4CB0EADB225E72FE983C177E /* [CP] Embed Pods Frameworks */ = {
+		49ABA09B26D09466BA5DC7A0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LearnRxTask/Pods-LearnRxTask-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IDPCastable/IDPCastable.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IDPCastable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
@@ -505,9 +529,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC34ACA0212311290080D433 /* SignInView.swift in Sources */,
-				DC34ACAD21233AA50080D433 /* AutomaticDisposeCompatibleExtensions.swift in Sources */,
 				DCA83A302122C1280078DD8F /* SignInValidator.swift in Sources */,
-				DC34ACAB21233A2B0080D433 /* AutomaticDisposeCompatible.swift in Sources */,
+				DC34ACAB21233A2B0080D433 /* LifeTimeDisposeCompatible.swift in Sources */,
+				DCFC19C621244AFE00100CE3 /* UIViewControllerExtensions.swift in Sources */,
+				DCFC19C92124514200100CE3 /* TextConstants.swift in Sources */,
+				DCFC19C02124399900100CE3 /* ViewController.swift in Sources */,
 				DC34ACA82123387A0080D433 /* RxExtensions.swift in Sources */,
 				DCA83A322122D1390078DD8F /* ApiService.swift in Sources */,
 				DC34ACAF21233AF00080D433 /* AssociatedObjectHelper.swift in Sources */,

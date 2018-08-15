@@ -14,15 +14,15 @@ import RxCocoa
 // MARK: Protocol
 
 protocol ApiService {
-    func signIn(with username: String, password: String) -> Observable<Bool>
+    func signIn(with username: String, password: String) -> Bool
 }
 
 // MARK: Implementation
 
 class ApiServiceImplementation: ApiService {
 
-    func signIn(with username: String, password: String) -> Observable<Bool> {
-        return Observable.just(true)
+    func signIn(with username: String, password: String) -> Bool {
+        return true
     }
 
 }

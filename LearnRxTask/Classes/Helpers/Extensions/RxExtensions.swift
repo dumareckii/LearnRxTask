@@ -7,10 +7,9 @@
 //
 
 import RxSwift
-import RxCocoa
 
 extension Disposable {
-    func lifeTime(until object: AutomaticDisposeCompatible) {
+    func lifeTime(_ object: LifeTimeDisposeCompatible) {
         self.disposed(by: object.disposeBag)
     }
 }

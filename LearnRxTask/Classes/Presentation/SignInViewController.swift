@@ -10,46 +10,70 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SignInViewController: UIViewController, AutomaticDisposeCompatible {
+class SignInViewController: UIViewController, LifeTimeDisposeCompatible {
     
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var signInButton: UIButton!
+    let viewNibName = "SignInView"
+
+    var rootView: SignInView? {
+        return self.viewIfLoaded as? SignInView
+    }
+
+    //MARK: - Initializations/Deinitialization
+    
+    required public init() {
+        super.init(nibName: viewNibName, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        print("Deinit " + String(describing: type(of: self)))
+    }
+
+    //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        configure()
+    }
+    
+    // MARK: -  Private methods
+    
+    private func configure() {
         let viewModel = SignInViewModel(
             input: (
-                email: emailTextField.rx.text.orEmpty.asDriver().debug(),
-                password: passwordTextField.rx.text.orEmpty.asDriver().debug(),
-                signInTaps: signInButton.rx.tap.asDriver().debug()
+                email: rootView?.emailTextField?.rx.text.orEmpty.asDriver().debug(),
+                password: rootView?.passwordTextField?.rx.text.orEmpty.asDriver().debug(),
+                signInTaps: rootView?.signInButton?.rx.tap.asDriver().debug()
             ),
             API: ApiServiceFactory.default()
         )
-
+        
         viewModel.signInEnabled.debug().drive(onNext: { [weak self] enabled in
-            self?.signInButton.isEnabled = enabled
-            self?.signInButton.alpha = enabled ? 1 : 0.5
-        }).lifeTime(until: self)
-
+            self?.rootView?.signInButton?.isEnabled = enabled
+            self?.rootView?.signInButton?.alpha = enabled ? 1 : 0.5
+        }).lifeTime(self)
+        
         viewModel.validatedEmail.skip(1).debug().drive(onNext: { [weak self] result in
-            self?.emailTextField.backgroundColor = result.isValid ? UIColor.clear : UIColor.red
-        }).lifeTime(until: self)
-
+            self?.rootView?.emailTextField?.backgroundColor = result.isValid ? UIColor.clear : UIColor.red
+        }).lifeTime(self)
+        
         viewModel.validatedPassword.skip(1).debug().drive(onNext: { [weak self] result in
-            self?.passwordTextField.backgroundColor = result.isValid ? UIColor.clear : UIColor.red
-        }).lifeTime(until: self)
-
+            self?.rootView?.passwordTextField?.backgroundColor = result.isValid ? UIColor.clear : UIColor.red
+        }).lifeTime(self)
+        
         viewModel.signedIn.drive(onNext: { [weak self] signedIn in
-            let alert = UIAlertController(
-                title: nil,
-                message: "Sign In successful",
-                preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
-            self?.present(alert, animated: true, completion: nil)
-
-        }).lifeTime(until: self)
+            self?.showAlert(
+                alertConfig: (
+                    title: nil,
+                    message: TextConstants.PopupConstants.signInSuccessful,
+                    preferredStyle: .alert),
+                actionConfig: (
+                    title: TextConstants.PopupConstants.actionOk,
+                    style: .cancel))
+        }).lifeTime( self)
     }
 }
 

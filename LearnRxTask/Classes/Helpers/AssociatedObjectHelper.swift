@@ -7,20 +7,48 @@
 //
 
 import Foundation
+import IDPCastable
 
-struct AssociatedObjectKeys {
-    static var disposeBagKey: UInt8 = 0
-}
+//return objc_getAssociatedObject(base, key)
+//    .flatMap(cast)
+//    ?? call {
+//        configure(associated) { objc_setAssociatedObject(base, key, $0, .OBJC_ASSOCIATION_RETAIN) }
+//}
 
-func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
-    if let associated = objc_getAssociatedObject(base, key) as? ValueType {
-        return associated
+//return objc_getAssociatedObject(base, key).flatMap { cast($0) } ?? configure(initialiser, action: { (vt) -> (ValueType) in
+//    objc_setAssociatedObject(base, key, vt, .OBJC_ASSOCIATION_RETAIN)
+//    return vt
+//})
+
+struct AssociatedObjectHelper {
+    
+    static func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
+        return objc_getAssociatedObject(base, key).flatMap { return cast($0) } ?? configure(initialiser) {
+            objc_setAssociatedObject(base, key, $0, .OBJC_ASSOCIATION_RETAIN)
+            return $0
+        }
     }
-    let associated = initialiser()
-    objc_setAssociatedObject(base, key, associated, .OBJC_ASSOCIATION_RETAIN)
-    return associated
+    
+    static func associateObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: ValueType) {
+        objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
+    }
+    
+    private static func configure<ValueType: AnyObject>(_ initialiser: () -> ValueType, action: (ValueType) -> (ValueType)) -> ValueType {
+        return action(initialiser())
+    }
+    
+//    static func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
+//        return objc_getAssociatedObject(base, key).flatMap { return cast($0) } ?? configure(initialiser) { objc_setAssociatedObject(base, key, $0, .OBJC_ASSOCIATION_RETAIN) }
+//    }
+//
+//    static func associateObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: ValueType) {
+//        objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
+//    }
+//
+//    private static func configure<ValueType: AnyObject>(_ initialiser: () -> ValueType, action: (ValueType) -> ()) -> ValueType {
+//        let assotiated = initialiser()
+//        action(assotiated)
+//        return assotiated
+//    }
 }
 
-func associateObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: ValueType) {
-    objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
-}

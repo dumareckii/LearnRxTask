@@ -10,7 +10,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
 class SignInViewModel {
 
      let validatedEmail: Driver<ValidationResult>
@@ -21,35 +20,35 @@ class SignInViewModel {
 
      init(
           input: (
-               email: Driver<String>,
-               password: Driver<String>,
-               signInTaps: Driver<Void>
+               email: Driver<String>?,
+               password: Driver<String>?,
+               signInTaps: Driver<Void>?
           ),
           API: ApiService
      ) {
-          validatedEmail = input.email
+          validatedEmail = input.email! //TODO: unwrap
                .flatMapLatest {
                     Driver.of(SignInValidator.validateEmail(email: $0))
                          .asDriver(onErrorJustReturn: .failed(message: "Smth went wrong"))
                }
-               .debug()
+          
 
-          validatedPassword = input.password.flatMapLatest {
+          validatedPassword = input.password!.flatMapLatest { //TODO: unwrap
                Driver.of(SignInValidator.validatePassword(password: $0)).asDriver(onErrorJustReturn: .failed(message: "Smth went wrong"))
-          }.debug()
+          }
 
           signInEnabled = Driver.combineLatest(validatedEmail, validatedPassword) { email, password in
                return email.isValid && password.isValid
           }.distinctUntilChanged().debug()
 
           let emailAndPassword = Driver
-               .combineLatest(input.email, input.password) { ($0, $1) }
+               .combineLatest(input.email!, input.password!) { ($0, $1) } //TODO: unwrap
                .debug()
 
-          signedIn = input.signInTaps
+          signedIn = input.signInTaps!
                .withLatestFrom(emailAndPassword)
                .flatMapLatest { email, password in
-                    return API.signIn(with: email, password: password).asDriver(onErrorJustReturn: false)
+                    return  Driver.of(API.signIn(with: email, password: password)).asDriver(onErrorJustReturn: false)
                }
                .debug()
      }
