@@ -9,17 +9,20 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import IDPCastable
 
-class SignInViewController: UIViewController, LifeTimeDisposeCompatible {
-    
+class SignInViewController: UIViewController, DisposeBagOwner {
+
     let viewNibName = "SignInView"
 
     var rootView: SignInView? {
-        return self.viewIfLoaded as? SignInView
+        return cast(self.viewIfLoaded)
     }
 
+    let viewModel = SignInViewModelFactory.default()
+
     //MARK: - Initializations/Deinitialization
-    
+
     required public init() {
         super.init(nibName: viewNibName, bundle: nil)
     }
@@ -27,58 +30,80 @@ class SignInViewController: UIViewController, LifeTimeDisposeCompatible {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     deinit {
         print("Deinit " + String(describing: type(of: self)))
     }
 
     //MARK: - View lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
     }
-    
+
     // MARK: -  Private methods
-    
+
     private func configure() {
-        let viewModel = SignInViewModel(
-            input: (
-                email: rootView?.emailTextField?.rx.text.orEmpty.asDriver(),
-                password: rootView?.passwordTextField?.rx.text.orEmpty.asDriver(),
-                signInTaps: rootView?.signInButton?.rx.tap.asDriver()
-            ),
-            API: ApiServiceFactory.default()
-        )
         
-//        rootView?.emailTextField?.rx
-//            .text.orEmpty.asDriver()
-//            .drive(rootView?.signInButton?.rx.isEnabled)
-        
-        viewModel.signInEnabled.drive(onNext: { [weak self] enabled in
-            self?.rootView?.signInButton?.isEnabled = enabled
-            self?.rootView?.signInButton?.alpha = enabled ? 1 : 0.5
-        }).lifeTime(self)
-        
-        viewModel.validatedEmail.skip(1).drive(onNext: { [weak self] result in
-            self?.rootView?.emailTextField?.backgroundColor = result.isValid ? UIColor.clear : UIColor.red
-        }).lifeTime(self)
-        
-        viewModel.validatedPassword.skip(1).drive(onNext: { [weak self] result in
-            self?.rootView?.passwordTextField?.backgroundColor = result.isValid ? UIColor.clear : UIColor.red
-        }).lifeTime(self)
-        
-        viewModel.signedIn.drive(onNext: { [weak self] signedIn in
-            self?.showAlert(
-                alertConfig: (
-                    title: nil,
-                    message: TextConstants.PopupConstants.signInSuccessful,
-                    preferredStyle: .alert),
-                actionConfig: (
-                    title: TextConstants.PopupConstants.actionOk,
-                    style: .cancel))
-        }).lifeTime(self)
+        guard let rootView = rootView else { return }
+
+        rootView.emailTextField?.rx.text.orEmpty
+        .map {
+            SignInValidator.validateEmail(email: $0).isValid
+        }
+        .flatMap {
+            rootView.emailTextField?.rx.backgroundColor = $0 ? UIColor.clear : UIColor.red
+        }
+
+        let passwordValid = rootView.passwordTextField?.rx.text
+            .orEmpty
+            .map {
+                SignInValidator.validatePassword(password: $0).isValid
+            }
+
+        let everythingValid = Observable
+                                .combineLatest(emailValid!, passwordValid!) { $0 && $1 }
+                                .distinctUntilChanged()
+
+//        emailValid?
+//            .skip(1)
+//            .bind(to: rootView.emailTextField!.rx.isValid)
+//            .lifeTime(self)
+//
+//        passwordValid?
+//            .skip(1)
+//            .bind(to: rootView.passwordTextField!.rx.isValid)
+//            .lifeTime(self)
+
+        everythingValid
+            .bind(to: rootView.signInButton!.rx.isEnabled)
+            .lifeTime(self)
+
+        let emailAndPassword = Observable
+                                .combineLatest(rootView.emailTextField!.rx.text.orEmpty,
+                                               rootView.passwordTextField!.rx.text.orEmpty)
+        { ($0, $1) }
+
+        let signedIn = rootView.signInButton?.rx.tap
+            .asObservable()
+            .withLatestFrom(emailAndPassword)
+            .flatMapLatest { [weak self] email, password in
+                self?.viewModel.signIn(withEmail: email, password: password)
+        }
+
+        signedIn?
+            .bind(onNext: { [weak self] isSignedIn in
+                guard isSignedIn == true else { return }
+                self?.showAlert(
+                    alertConfig: (
+                        title: nil,
+                        message: TextConstants.PopupConstants.signInSuccessful,
+                        preferredStyle: .alert),
+                    actionConfig: (
+                        title: TextConstants.PopupConstants.actionOk,
+                        style: .cancel))
+            })
+            .lifeTime(self)
     }
 }
-
-

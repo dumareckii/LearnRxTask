@@ -9,22 +9,24 @@
 import Foundation
 import IDPCastable
 
-
 struct AssociatedObjectHelper {
     
     static func associatedObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, initialiser: () -> ValueType) -> ValueType {
-        return objc_getAssociatedObject(base, key).flatMap { return cast($0) } ?? configure(initialiser) {
-            objc_setAssociatedObject(base, key, $0, .OBJC_ASSOCIATION_RETAIN)
-            return $0
-        }
+        return objc_getAssociatedObject(base, key)
+            .flatMap(cast)
+            ?? configure(initialiser()) {
+                objc_setAssociatedObject(base, key, $0, .OBJC_ASSOCIATION_RETAIN)
+            }
     }
     
     static func associateObject<ValueType: AnyObject>(base: AnyObject, key: UnsafePointer<UInt8>, value: ValueType) {
         objc_setAssociatedObject(base, key, value, .OBJC_ASSOCIATION_RETAIN)
     }
     
-    private static func configure<ValueType: AnyObject>(_ initialiser: () -> ValueType, action: (ValueType) -> (ValueType)) -> ValueType {
-        return action(initialiser())
+    @discardableResult
+    private static func configure<ValueType: AnyObject>(_ value: ValueType, action: (ValueType) -> ()) -> ValueType {
+        action(value)
+        return value
     }
 }
 

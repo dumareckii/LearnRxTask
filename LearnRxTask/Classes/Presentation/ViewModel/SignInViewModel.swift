@@ -10,47 +10,35 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class SignInViewModel {
+//MARK: - Protocol
 
-     let validatedEmail: Driver<ValidationResult>
-     let validatedPassword: Driver<ValidationResult>
+protocol SignInViewModel {
+     func signIn(withEmail email: String, password: String) -> Observable<Bool>
+}
 
-     let signInEnabled: Driver<Bool>
-     let signedIn: Driver<Bool>
+//MARK: - Implementation
 
-     init(
-          input: (
-               email: Driver<String>?,
-               password: Driver<String>?,
-               signInTaps: Driver<Void>?
-          ),
-          API: ApiService
-     ) {
-          validatedEmail = input.email! //TODO: unwrap
-               .flatMapLatest {
-                    Driver.of(SignInValidator.validateEmail(email: $0))
-                         .asDriver(onErrorJustReturn: .failed(message: "Smth went wrong"))
-               }
-          
+class SignInViewModelImplementation: SignInViewModel {
 
-          validatedPassword = input.password!.flatMapLatest { //TODO: unwrap
-               Driver.of(SignInValidator.validatePassword(password: $0)).asDriver(onErrorJustReturn: .failed(message: "Smth went wrong"))
-          }
+     private let apiService: ApiService
 
-          signInEnabled = Driver.combineLatest(validatedEmail, validatedPassword) { email, password in
-               return email.isValid && password.isValid
-          }.distinctUntilChanged()
+     init(apiService: ApiService) {
+          self.apiService = apiService
+     }
+     
+     func signIn(withEmail email: String, password: String) -> Observable<Bool> {
+          return Observable
+               .of(apiService
+                    .signIn(with: email, password: password)
+               )
+     }
+}
 
-          let emailAndPassword = Driver
-               .combineLatest(input.email!, input.password!) { ($0, $1) } //TODO: unwrap
-          
+// MARK: Factory
 
-          signedIn = input.signInTaps!
-               .withLatestFrom(emailAndPassword)
-               .flatMapLatest { email, password in
-                    return  Driver.of(API.signIn(with: email, password: password)).asDriver(onErrorJustReturn: false)
-               }
-          
+class SignInViewModelFactory {
+     static func `default`() -> SignInViewModel {
+          return SignInViewModelImplementation(apiService: ApiServiceFactory.default())
      }
 }
 

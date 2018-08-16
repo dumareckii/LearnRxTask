@@ -1,8 +1,8 @@
 //
-//  UIViewControllerExtensions.swift
+//  UIViewController+Extension.swift
 //  LearnRxTask
 //
-//  Created by Valentyn.D on 8/15/18.
+//  Created by Valentyn.D on 8/16/18.
 //  Copyright © 2018 IDAP. All rights reserved.
 //
 

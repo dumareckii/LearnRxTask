@@ -1,5 +1,5 @@
 //
-//  LifeTimeDisposeCompatible.swift
+//  DisposeBagOwner.swift
 //  LearnRxTask
 //
 //  Created by Valentyn.D on 8/14/18.
@@ -8,7 +8,7 @@
 
 import RxSwift
 
-protocol LifeTimeDisposeCompatible {
+protocol DisposeBagOwner {
     var disposeBag: DisposeBag { get }
 }
 
@@ -16,7 +16,7 @@ private struct AssociatedKey {
     static var disposeBagKey: UInt8 = 0
 }
 
-extension LifeTimeDisposeCompatible where Self: AnyObject {
+extension DisposeBagOwner where Self: AnyObject {
 
     var disposeBag: DisposeBag {
         return AssociatedObjectHelper.associatedObject(base: self, key: &AssociatedKey.disposeBagKey, initialiser: DisposeBag.init)

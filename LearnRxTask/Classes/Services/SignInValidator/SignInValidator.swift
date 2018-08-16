@@ -8,29 +8,12 @@
 
 import Foundation
 
-enum ValidationResult {
-    case ok
-    case empty
-    case failed(message: String)
-}
-
-extension ValidationResult {
-    var isValid: Bool {
-        switch self {
-        case .ok:
-            return true
-        default:
-            return false
-        }
-    }
-}
 
 struct SignInValidator {
 
     static func validateEmail(email: String) -> ValidationResult {
-        if email.count == 0 {
-            return .empty
-        } else if !(email.count >= 4) {
+
+        if !(email.count >= 4) {
             return .failed(message: "Email too short")
         }
 
@@ -42,9 +25,10 @@ struct SignInValidator {
     }
 
     static func validatePassword(password: String) -> ValidationResult {
-        if password.count == 0 {
-            return .empty
-        } else if !(password.count >= 6) {
+        
+        let dasd: [StringValidationRule] = [.charactersCountGreaterThan(number: 5), .charactersCountЕqualTo(number: 5)]
+
+        if !(password.count >= 6) {
             return .failed(message: "Password too short")
         }
 

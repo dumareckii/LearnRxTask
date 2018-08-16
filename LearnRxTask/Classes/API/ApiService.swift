@@ -8,23 +8,23 @@
 
 import Foundation
 
-// MARK: Protocol
+// MARK: - Protocol
 
 protocol ApiService {
-    func signIn(with username: String, password: String) -> Bool
+    func signIn(with email: String, password: String) -> Bool
 }
 
-// MARK: Implementation
+// MARK: - Implementation
 
 class ApiServiceImplementation: ApiService {
 
-    func signIn(with username: String, password: String) -> Bool {
+    func signIn(with email: String, password: String) -> Bool {
         return true
     }
 
 }
 
-// MARK: Factory
+// MARK: - Factory
 
 class ApiServiceFactory {
     static func `default`() -> ApiService {
