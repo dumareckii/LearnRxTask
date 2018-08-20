@@ -8,30 +8,28 @@
 
 import Foundation
 
-
 struct SignInValidator {
 
     static func validateEmail(email: String) -> ValidationResult {
 
-        if !(email.count >= 4) {
-            return .failed(message: "Email too short")
-        }
+        let validationRules: [StringValidationRule] = [
+                .charactersCountGreaterThanOrEqualTo(4),
+                .shouldMatchWithRegExp("[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}")
+        ]
 
-        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
-        let isValidEmail = emailPredicate.evaluate(with: email)
-
-        return isValidEmail ? .ok : .failed(message: "Email not valid")
+        return validationRules
+            .validate(string: email) ?
+            .ok :
+            .failed(message: "Email not valid")
     }
 
     static func validatePassword(password: String) -> ValidationResult {
-        
-        let dasd: [StringValidationRule] = [.charactersCountGreaterThan(number: 5), .charactersCountЕqualTo(number: 5)]
 
-        if !(password.count >= 6) {
-            return .failed(message: "Password too short")
-        }
+        let validationRules: [StringValidationRule] = [.charactersCountGreaterThanOrEqualTo(6)]
 
-        return .ok
+        return validationRules
+            .validate(string: password) ?
+            .ok:
+            .failed(message: "Password not valid")
     }
 }

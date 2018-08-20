@@ -13,16 +13,16 @@
 		DC34ACA0212311290080D433 /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34AC9F212311290080D433 /* SignInView.swift */; };
 		DC34ACA2212311360080D433 /* SignInView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC34ACA1212311360080D433 /* SignInView.xib */; };
 		DC34ACAF21233AF00080D433 /* AssociatedObjectHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC34ACAE21233AF00080D433 /* AssociatedObjectHelper.swift */; };
+		DC900BD6212B03A5000396EE /* ValidationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC900BD5212B03A5000396EE /* ValidationResult.swift */; };
 		DCA83A272122BF350078DD8F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA83A262122BF350078DD8F /* SignInViewController.swift */; };
 		DCA83A292122BF510078DD8F /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA83A282122BF510078DD8F /* SignInViewModel.swift */; };
 		DCA83A302122C1280078DD8F /* SignInValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA83A2F2122C1280078DD8F /* SignInValidator.swift */; };
 		DCA83A322122D1390078DD8F /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA83A312122D1390078DD8F /* ApiService.swift */; };
 		DCBF3C5E21258E640086308F /* DisposeBagOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF3C5D21258E640086308F /* DisposeBagOwner.swift */; };
 		DCBF3C6021258F5A0086308F /* Disposable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF3C5F21258F5A0086308F /* Disposable+Extension.swift */; };
-		DCBF3C6221258F8F0086308F /* Reactive+UIControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF3C6121258F8F0086308F /* Reactive+UIControl.swift */; };
+		DCBF3C6221258F8F0086308F /* Reactive+UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF3C6121258F8F0086308F /* Reactive+UIView.swift */; };
 		DCBF3C6421258FE70086308F /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF3C6321258FE70086308F /* UIViewController+Extension.swift */; };
-		DCBF3C68212596A80086308F /* Validatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF3C67212596A80086308F /* Validatable.swift */; };
-		DCBF3C6B21259C8C0086308F /* ValidationCombinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF3C6A21259C8C0086308F /* ValidationCombinator.swift */; };
+		DCBF3C6B21259C8C0086308F /* StringValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBF3C6A21259C8C0086308F /* StringValidation.swift */; };
 		DCE03A9A2121A4C10044D442 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCE03A992121A4C10044D442 /* AppDelegate.swift */; };
 		DCE03A9F2121A4C10044D442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCE03A9D2121A4C10044D442 /* Main.storyboard */; };
 		DCE03AA12121A4C20044D442 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DCE03AA02121A4C20044D442 /* Assets.xcassets */; };
@@ -63,16 +63,16 @@
 		DC34AC9F212311290080D433 /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
 		DC34ACA1212311360080D433 /* SignInView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInView.xib; sourceTree = "<group>"; };
 		DC34ACAE21233AF00080D433 /* AssociatedObjectHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssociatedObjectHelper.swift; sourceTree = "<group>"; };
+		DC900BD5212B03A5000396EE /* ValidationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationResult.swift; sourceTree = "<group>"; };
 		DCA83A262122BF350078DD8F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		DCA83A282122BF510078DD8F /* SignInViewModel.swift */ = {isa = PBXFileReference; indentWidth = 5; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		DCA83A2F2122C1280078DD8F /* SignInValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInValidator.swift; sourceTree = "<group>"; };
 		DCA83A312122D1390078DD8F /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		DCBF3C5D21258E640086308F /* DisposeBagOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposeBagOwner.swift; sourceTree = "<group>"; };
 		DCBF3C5F21258F5A0086308F /* Disposable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Disposable+Extension.swift"; sourceTree = "<group>"; };
-		DCBF3C6121258F8F0086308F /* Reactive+UIControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+UIControl.swift"; sourceTree = "<group>"; };
+		DCBF3C6121258F8F0086308F /* Reactive+UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reactive+UIView.swift"; sourceTree = "<group>"; };
 		DCBF3C6321258FE70086308F /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		DCBF3C67212596A80086308F /* Validatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validatable.swift; sourceTree = "<group>"; };
-		DCBF3C6A21259C8C0086308F /* ValidationCombinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationCombinator.swift; sourceTree = "<group>"; };
+		DCBF3C6A21259C8C0086308F /* StringValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringValidation.swift; sourceTree = "<group>"; };
 		DCE03A962121A4C10044D442 /* LearnRxTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearnRxTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCE03A992121A4C10044D442 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DCE03A9E2121A4C10044D442 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -143,7 +143,6 @@
 		DC34ACA32123113B0080D433 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				DC34AC9F212311290080D433 /* SignInView.swift */,
 				DC34ACA1212311360080D433 /* SignInView.xib */,
 			);
 			path = View;
@@ -171,7 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				DCBF3C5F21258F5A0086308F /* Disposable+Extension.swift */,
-				DCBF3C6121258F8F0086308F /* Reactive+UIControl.swift */,
+				DCBF3C6121258F8F0086308F /* Reactive+UIView.swift */,
 				DCBF3C6321258FE70086308F /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
@@ -180,10 +179,18 @@
 		DC34ACA9212339970080D433 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				DCBF3C662125961B0086308F /* Validatable */,
 				DCBF3C65212596150086308F /* DisposeBagOwner */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		DC900BD4212B0379000396EE /* Validation */ = {
+			isa = PBXGroup;
+			children = (
+				DC900BD5212B03A5000396EE /* ValidationResult.swift */,
+				DCBF3C6921259C6F0086308F /* StringValidation */,
+			);
+			path = Validation;
 			sourceTree = "<group>";
 		};
 		DCA83A232122BECB0078DD8F /* Classes */ = {
@@ -210,6 +217,7 @@
 		DCA83A252122BEF40078DD8F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				DC34AC9F212311290080D433 /* SignInView.swift */,
 				DC34ACA32123113B0080D433 /* View */,
 				DC34ACA4212311510080D433 /* ViewModel */,
 				DCA83A262122BF350078DD8F /* SignInViewController.swift */,
@@ -238,7 +246,7 @@
 		DCA83A2D2122C1080078DD8F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				DCBF3C6921259C6F0086308F /* ValidationCombinator */,
+				DC900BD4212B0379000396EE /* Validation */,
 				DCA83A2E2122C10D0078DD8F /* SignInValidator */,
 			);
 			path = Services;
@@ -260,20 +268,12 @@
 			path = DisposeBagOwner;
 			sourceTree = "<group>";
 		};
-		DCBF3C662125961B0086308F /* Validatable */ = {
+		DCBF3C6921259C6F0086308F /* StringValidation */ = {
 			isa = PBXGroup;
 			children = (
-				DCBF3C67212596A80086308F /* Validatable.swift */,
+				DCBF3C6A21259C8C0086308F /* StringValidation.swift */,
 			);
-			path = Validatable;
-			sourceTree = "<group>";
-		};
-		DCBF3C6921259C6F0086308F /* ValidationCombinator */ = {
-			isa = PBXGroup;
-			children = (
-				DCBF3C6A21259C8C0086308F /* ValidationCombinator.swift */,
-			);
-			path = ValidationCombinator;
+			path = StringValidation;
 			sourceTree = "<group>";
 		};
 		DCE03A8D2121A4C10044D442 = {
@@ -563,19 +563,19 @@
 			files = (
 				DC34ACA0212311290080D433 /* SignInView.swift in Sources */,
 				DCA83A302122C1280078DD8F /* SignInValidator.swift in Sources */,
-				DCBF3C6B21259C8C0086308F /* ValidationCombinator.swift in Sources */,
-				DCBF3C6221258F8F0086308F /* Reactive+UIControl.swift in Sources */,
+				DCBF3C6B21259C8C0086308F /* StringValidation.swift in Sources */,
+				DCBF3C6221258F8F0086308F /* Reactive+UIView.swift in Sources */,
 				DCFC19C92124514200100CE3 /* TextConstants.swift in Sources */,
 				DCFC19C02124399900100CE3 /* ViewController.swift in Sources */,
 				DCBF3C6021258F5A0086308F /* Disposable+Extension.swift in Sources */,
 				DCBF3C5E21258E640086308F /* DisposeBagOwner.swift in Sources */,
+				DC900BD6212B03A5000396EE /* ValidationResult.swift in Sources */,
 				DCA83A322122D1390078DD8F /* ApiService.swift in Sources */,
 				DC34ACAF21233AF00080D433 /* AssociatedObjectHelper.swift in Sources */,
 				DCBF3C6421258FE70086308F /* UIViewController+Extension.swift in Sources */,
 				DCA83A292122BF510078DD8F /* SignInViewModel.swift in Sources */,
 				DCE03A9A2121A4C10044D442 /* AppDelegate.swift in Sources */,
 				DCA83A272122BF350078DD8F /* SignInViewController.swift in Sources */,
-				DCBF3C68212596A80086308F /* Validatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

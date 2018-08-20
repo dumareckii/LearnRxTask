@@ -25,12 +25,9 @@ class SignInViewModelImplementation: SignInViewModel {
      init(apiService: ApiService) {
           self.apiService = apiService
      }
-     
+
      func signIn(withEmail email: String, password: String) -> Observable<Bool> {
-          return Observable
-               .of(apiService
-                    .signIn(with: email, password: password)
-               )
+          return Observable.of(apiService.signIn(with: email, password: password))
      }
 }
 

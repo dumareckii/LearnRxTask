@@ -45,54 +45,44 @@ class SignInViewController: UIViewController, DisposeBagOwner {
     // MARK: -  Private methods
 
     private func configure() {
-        
+
         guard let rootView = rootView else { return }
 
-        rootView.emailTextField?.rx.text.orEmpty
-        .map {
-            SignInValidator.validateEmail(email: $0).isValid
+        let emailTextFieldSignal = rootView.emailTextField.rx.text.orEmpty.asObservable()
+        let passwordTextFieldSignal = rootView.passwordTextField.rx.text.orEmpty.asObservable()
+
+        let isValidEmail = validate(signal: emailTextFieldSignal, action: SignInValidator.validateEmail)
+        let isValidPassword = validate(signal: passwordTextFieldSignal, action: SignInValidator.validatePassword)
+
+        isValidEmail.map { [weak self] in
+            self?.colorFor(state: $0)
         }
-        .flatMap {
-            rootView.emailTextField?.rx.backgroundColor = $0 ? UIColor.clear : UIColor.red
-        }
-
-        let passwordValid = rootView.passwordTextField?.rx.text
-            .orEmpty
-            .map {
-                SignInValidator.validatePassword(password: $0).isValid
-            }
-
-        let everythingValid = Observable
-                                .combineLatest(emailValid!, passwordValid!) { $0 && $1 }
-                                .distinctUntilChanged()
-
-//        emailValid?
-//            .skip(1)
-//            .bind(to: rootView.emailTextField!.rx.isValid)
-//            .lifeTime(self)
-//
-//        passwordValid?
-//            .skip(1)
-//            .bind(to: rootView.passwordTextField!.rx.isValid)
-//            .lifeTime(self)
-
-        everythingValid
-            .bind(to: rootView.signInButton!.rx.isEnabled)
+            .bind(to: rootView.emailTextField.rx.backgroundColor)
             .lifeTime(self)
 
-        let emailAndPassword = Observable
-                                .combineLatest(rootView.emailTextField!.rx.text.orEmpty,
-                                               rootView.passwordTextField!.rx.text.orEmpty)
-        { ($0, $1) }
-
-        let signedIn = rootView.signInButton?.rx.tap
-            .asObservable()
-            .withLatestFrom(emailAndPassword)
-            .flatMapLatest { [weak self] email, password in
-                self?.viewModel.signIn(withEmail: email, password: password)
+        isValidPassword.map { [weak self] in
+            self?.colorFor(state: $0)
         }
+            .bind(to: rootView.passwordTextField.rx.backgroundColor)
+            .lifeTime(self)
 
-        signedIn?
+        Observable.combineLatest(
+            isValidEmail,
+            isValidPassword
+        ) { $0 && $1 }
+            .distinctUntilChanged()
+            .bind(to: rootView.signInButton.rx.isEnabled)
+            .lifeTime(self)
+
+        let signedIn = rootView.signInButton.rx.tap.asObservable()
+            .withLatestFrom (
+                Observable.combineLatest(emailTextFieldSignal, passwordTextFieldSignal) { ($0, $1) }
+            )
+            .flatMapLatest { [weak self] email, password in
+                self?.viewModel.signIn(withEmail: email, password: password) ?? Observable.just(false)
+            }
+
+        signedIn
             .bind(onNext: { [weak self] isSignedIn in
                 guard isSignedIn == true else { return }
                 self?.showAlert(
@@ -106,4 +96,16 @@ class SignInViewController: UIViewController, DisposeBagOwner {
             })
             .lifeTime(self)
     }
+
+    private func validate(signal: Observable<String>,
+                          action: @escaping (String) -> ValidationResult) -> Observable<Bool> {
+        return signal.map {
+            action($0).isValid
+        }
+    }
+
+    private func colorFor(state isValid: Bool) -> UIColor {
+        return isValid ? UIColor.clear : UIColor.red
+    }
+
 }
