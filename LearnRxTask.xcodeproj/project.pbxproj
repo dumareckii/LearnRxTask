@@ -149,6 +149,7 @@
 		DC34ACA32123113B0080D433 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				DC34AC9F212311290080D433 /* SignInView.swift */,
 				DC34ACA1212311360080D433 /* SignInView.xib */,
 			);
 			path = View;
@@ -165,11 +166,11 @@
 		DC34ACA5212336DD0080D433 /* Types */ = {
 			isa = PBXGroup;
 			children = (
-				DC7A40B1212C72A90023A36B /* PureFunctions.swift */,
 				DC34ACAE21233AF00080D433 /* Association.swift */,
+				DC7A40B1212C72A90023A36B /* PureFunctions.swift */,
+				DC78C37021340E2E006C7432 /* Reducer.swift */,
 				DC34ACA9212339970080D433 /* Protocols */,
 				DC34ACA6212338460080D433 /* Extensions */,
-				DC78C37021340E2E006C7432 /* Reducer.swift */,
 			);
 			path = Types;
 			sourceTree = "<group>";
@@ -193,6 +194,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		DC5C7B932134640000800FCA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				DCA83A262122BF350078DD8F /* SignInViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		DC900BD4212B0379000396EE /* Validation */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +221,6 @@
 				DC34ACA5212336DD0080D433 /* Types */,
 				DCA83A2D2122C1080078DD8F /* Services */,
 				DCA83A252122BEF40078DD8F /* Presentation */,
-				DCA83A242122BED50078DD8F /* API */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -228,10 +236,9 @@
 		DCA83A252122BEF40078DD8F /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				DC34AC9F212311290080D433 /* SignInView.swift */,
+				DC5C7B932134640000800FCA /* Controller */,
 				DC34ACA32123113B0080D433 /* View */,
 				DC34ACA4212311510080D433 /* ViewModel */,
-				DCA83A262122BF350078DD8F /* SignInViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -257,6 +264,7 @@
 		DCA83A2D2122C1080078DD8F /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				DCA83A242122BED50078DD8F /* API */,
 				DC900BD4212B0379000396EE /* Validation */,
 			);
 			path = Services;
