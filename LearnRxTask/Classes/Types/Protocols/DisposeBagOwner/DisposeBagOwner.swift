@@ -8,17 +8,15 @@
 
 import RxSwift
 
+private let disposeBagAssociation = Association(policy: .OBJC_ASSOCIATION_RETAIN)
+
 protocol DisposeBagOwner {
     var disposeBag: DisposeBag { get }
-}
-
-private struct AssociatedKey {
-    static var disposeBagKey: UInt8 = 0
 }
 
 extension DisposeBagOwner where Self: AnyObject {
 
     var disposeBag: DisposeBag {
-        return AssociatedObjectHelper.associatedObject(base: self, key: &AssociatedKey.disposeBagKey, initialiser: DisposeBag.init)
+        return disposeBagAssociation.lazyGet(base: self, initialiser: DisposeBag.init)
     }
 }

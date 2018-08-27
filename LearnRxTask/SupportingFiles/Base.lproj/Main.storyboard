@@ -1,61 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kk1-fd-TGv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <scenes>
-        <!--View Controller-->
-        <scene sceneID="beP-UY-UUC">
-            <objects>
-                <viewController id="A7f-Hl-jeb" customClass="ViewController" customModule="LearnRxTask" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="kjj-0Z-Czy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MK3-A8-8N5">
-                                <rect key="frame" x="172" y="350.5" width="30" height="30"/>
-                                <state key="normal" title="Test"/>
-                                <connections>
-                                    <action selector="testButtonPressed:" destination="A7f-Hl-jeb" eventType="touchUpInside" id="jFC-uy-fIp"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="MK3-A8-8N5" firstAttribute="centerY" secondItem="4se-hY-tCI" secondAttribute="centerY" id="9A7-fe-9HE"/>
-                            <constraint firstItem="MK3-A8-8N5" firstAttribute="centerX" secondItem="4se-hY-tCI" secondAttribute="centerX" id="p6M-k4-oZq"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="4se-hY-tCI"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="Asc-ce-bxp"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="6rn-vO-YMV" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-193" y="105"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="F09-nn-mli">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Kk1-fd-TGv" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nGe-jb-tJk">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="A7f-Hl-jeb" kind="relationship" relationship="rootViewController" id="LLU-P2-VdX"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="V5B-j3-UfH" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-849" y="105"/>
-        </scene>
-    </scenes>
+    <scenes/>
 </document>

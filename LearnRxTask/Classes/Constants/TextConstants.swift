@@ -13,7 +13,11 @@ struct TextConstants {
     struct PopupConstants {
         static let signInSuccessful = "Sign In successful"
         static let actionOk = "Ok"
-        
+    }
+    
+    struct SignInValidation {
+        static let emailNotValid = "Email not valid"
+        static let passwordNotValid = "Password not valid"
     }
     
 }

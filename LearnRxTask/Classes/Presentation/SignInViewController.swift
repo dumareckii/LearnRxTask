@@ -41,6 +41,11 @@ class SignInViewController: UIViewController, DisposeBagOwner {
         super.viewDidLoad()
         configure()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
 
     // MARK: -  Private methods
 
@@ -51,21 +56,12 @@ class SignInViewController: UIViewController, DisposeBagOwner {
         let emailTextFieldSignal = rootView.emailTextField.rx.text.orEmpty.asObservable()
         let passwordTextFieldSignal = rootView.passwordTextField.rx.text.orEmpty.asObservable()
 
-        let isValidEmail = validate(signal: emailTextFieldSignal, action: SignInValidator.validateEmail)
-        let isValidPassword = validate(signal: passwordTextFieldSignal, action: SignInValidator.validatePassword)
+        let isValidEmail = validate(signal: emailTextFieldSignal, action: Validator.Email.validate(_:))
+        let isValidPassword = validate(signal: passwordTextFieldSignal, action: Validator.Password.validate(_:))
 
-        isValidEmail.map { [weak self] in
-            self?.colorFor(state: $0)
-        }
-            .bind(to: rootView.emailTextField.rx.backgroundColor)
-            .lifeTime(self)
-
-        isValidPassword.map { [weak self] in
-            self?.colorFor(state: $0)
-        }
-            .bind(to: rootView.passwordTextField.rx.backgroundColor)
-            .lifeTime(self)
-
+        bindValidationResult(signal: isValidEmail, to: rootView.emailTextField.rx.backgroundColor)
+        bindValidationResult(signal: isValidPassword, to: rootView.passwordTextField.rx.backgroundColor)
+        
         Observable.combineLatest(
             isValidEmail,
             isValidPassword
@@ -96,9 +92,17 @@ class SignInViewController: UIViewController, DisposeBagOwner {
             })
             .lifeTime(self)
     }
+    
+    private func bindValidationResult(signal: Observable<Bool>, to binder: Binder<UIColor?>) {
+        signal.map { [weak self] in
+            self?.colorFor(state: $0)
+        }
+        .bind(to: binder)
+        .lifeTime(self)
+    }
 
     private func validate(signal: Observable<String>,
-                          action: @escaping (String) -> ValidationResult) -> Observable<Bool> {
+                          action: @escaping (String) -> Validator.Result) -> Observable<Bool> {
         return signal.map {
             action($0).isValid
         }
